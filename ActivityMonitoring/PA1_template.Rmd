@@ -7,7 +7,7 @@ The following short study makes use of data obtained from a personal activity mo
 ## Loading and preprocessing the data
 
 
-```{r loadData, results='hide'}
+```{r loadData}
 
 library(dplyr)
 
@@ -21,7 +21,7 @@ data <- mutate(data, hour = interval %/% 100, minute = interval %% 100)
 ## What is mean total number of steps taken per day?
 
 
-```{r loadData, results='hide'}
+```{r totalNumber}
 
 daily<-c()  # This will be the total number of steps taken per day
 
@@ -43,7 +43,7 @@ hist(daily_noNA, xlab="steps",ylab="Frequency",
 
 Mean
 
-```{r loadData, results='hide'}
+```{r mean}
 
 mean(daily,na.rm=T)
 
@@ -51,7 +51,7 @@ mean(daily,na.rm=T)
 
 Median
 
-```{r loadData, results='hide'}
+```{r median}
 
 median(daily,na.rm=T)
 
@@ -62,7 +62,7 @@ median(daily,na.rm=T)
 
 Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
 
-```{r loadData, results='hide'}
+```{r pattern}
 
 x<-data[,1]         # number of steps in 5-minute intevals
 y<-matrix(x,288,61) # so as to get average of 5-minute intevals across all days  
@@ -79,7 +79,7 @@ plot(data$interval[1:288],five_average, type='l',col='darkred',
 
 Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
 
-```{r loadData, results='hide'}
+```{r average}
 
 hr<-data$hour
 min<-data$minute
@@ -94,7 +94,7 @@ cat('The maximum number of steps occurs at',hr_max,':',min_max,'AM')
 
 ## Imputing missing values
 
-```{r loadData, results='hide'}
+```{r numberNa}
 
 sum(is.na(data[,1]))
 
@@ -102,7 +102,7 @@ sum(is.na(data[,1]))
 
 
 
-```{r loadData, results='hide'}
+```{r fiveMinutesAverage}
 
 five_average_rep<- rep(five_average,61)
 
@@ -118,7 +118,7 @@ for (i in 1:length(data1[,1])){  # there are 61 days
 
     
     
-```{r loadData, results='hide'}
+```{r totalNonNa}
 daily1<-c()
 
 
@@ -132,7 +132,7 @@ for (i in 1:61){              #  the total number of days in October and Novembe
 ```
 
 
-```{r loadData, results='hide'}
+```{r histNonNa}
 par(mfrow=c(2,1))
 
 hist(daily1, xlab="steps",ylab="Frequency",
@@ -149,7 +149,7 @@ hist(daily_noNA, xlab="steps",ylab="Frequency",
 
 Create a new factor variable in the dataset with two levels - “weekday” and “weekend” indicating whether a given date is a weekday or weekend day.
 
-```{r loadData, results='hide'}
+```{r weekends}
 
 data1$date<-as.Date(data1$date)
 
@@ -179,15 +179,21 @@ weekend_steps_average<-apply(temp,1,mean)
 Make a panel plot containing a time series plot (i.e. type = “l”) of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis)
 
 
-```{r loadData, results='hide'}
+```{r weekendsPlots}
 
 par(mfrow=c(2,1))
 
 plot(data$interval[1:288],weekday_steps_average, type="l",xlab='Intervals',ylab="Number of steps",
-     lwd=2, main="Weekday")
+     col='red',lwd=2, main="Weekday")
 
 plot(data$interval[1:288],weekend_steps_average, type="l", xlab='Intervals',ylab="number of steps",
-     lwd=2,main="Weekend")
+     col='blue',lwd=2,main="Weekend")
 
 
 ```
+
+
+
+
+
+
