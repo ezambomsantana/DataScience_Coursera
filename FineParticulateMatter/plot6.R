@@ -14,7 +14,7 @@ colnames(MVPM25ByYearAndRegion)[3] <- "Emissions"
 Balt1999Emissions <- subset(MVPM25ByYearAndRegion, year == 1999 & 
                               region == "Baltimore City")$Emissions
 LAC1999Emissions <- subset(MVPM25ByYearAndRegion, year == 1999 & 
-                             region == "Los Angeles County")$Emissions
+                             region == "Los Angeles")$Emissions
 MVPM25ByYearAndRegionNorm <- transform(MVPM25ByYearAndRegion,
                                        EmissionsNorm = ifelse(region == 
                                                                 "Baltimore City",
