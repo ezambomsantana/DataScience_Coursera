@@ -32,3 +32,7 @@ confusionMatrix(prediction1, testing$classe)
 model2 <- randomForest(classe ~. , data=training, method="class")
 prediction2 <- predict(model2, testing, type = "class")
 confusionMatrix(prediction2, testing$classe)
+
+
+predictfinal <- predict(model2, testingData, type="class")
+predictfinal
