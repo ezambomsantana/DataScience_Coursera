@@ -38,35 +38,25 @@ news_char <- scan("/home/eduardo/dev/coursera/swiftkey/en_US/en_US.news.txt", wh
 
 ## Exploratory Analysis
 
-The first data is the number of number of entries to each dataset:
+The following table presents some exploratory analysis about the data. The first column shows the number of entries of each dataset and the second column the word count of each dataset.
 
-```{r exploratory_length}
-length(twitter_data)
-length(news_data)
-length(blogs_data)
-```
-
-The second data is the word count of each dataset:
-
-```{r char_count}
-length(tweet_char)
-length(news_char)
-length(blog_char)
-```
+Source    | Entries                   | Word Count
+----------|---------------------------|------------
+Twitter:  | `r  length(twitter_data)` |  `r  length(tweet_char)`
+News:     | `r  length(news_data)`    |  `r  length(news_char)`
+Blog:     | `r  length(blogs_data)`   |  `r  length(blog_char)`
 
 
-
-```{r pre_processing}
-library(NLP)
+```{r preprocessing}
 library(tm)
 library(RColorBrewer)
 library(wordcloud)
 
 rm(blog_char, tweet_char, news_char)
 
-blogs_data <- sample(blogs_data, 10000)
-twitter_data <- sample(twitter_data, 10000)
-news_data <- sample(news_data, 10000)
+blogs_data <- sample(blogs_data, 5000)
+twitter_data <- sample(twitter_data, 5000)
+news_data <- sample(news_data, 5000)
 
 all_data <- c(blogs_data, twitter_data, news_data)
 
@@ -78,4 +68,3 @@ all_data <- removeWords(all_data, words=c('the', stopwords("english")))
 all_data <- stripWhitespace(all_data)
 
 ```
-
