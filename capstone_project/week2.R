@@ -47,24 +47,56 @@ News:     | `r  length(news_data)`    |  `r  length(news_char)`
 Blog:     | `r  length(blogs_data)`   |  `r  length(blog_char)`
 
 
+## Pre-Processing
+
+In the preprocessing phase, I made some activities such as cleaning, tokenization, and stemming. These actions were made in all three source files. In the final, I made these tasks in a subset of 5000 lines of all datasources. In the final, I create a dataframe, in which each column is the data from each dataset.
+
+
 ```{r preprocessing}
 library(tm)
 library(RColorBrewer)
-library(wordcloud)
 
 rm(blog_char, tweet_char, news_char)
 
-blogs_data <- sample(blogs_data, 5000)
-twitter_data <- sample(twitter_data, 5000)
-news_data <- sample(news_data, 5000)
+blogs_data <- sample(blogs_data, 10000)
+twitter_data <- sample(twitter_data, 10000)
+news_data <- sample(news_data, 10000)
 
 all_data <- c(blogs_data, twitter_data, news_data)
 
-#processing to remove punctuation, stopwords, and perform stemming.
 all_data <- removePunctuation(all_data)
 all_data <- tolower(all_data)
 all_data <- stemDocument(all_data)
 all_data <- removeWords(all_data, words=c('the', stopwords("english")))
 all_data <- stripWhitespace(all_data)
 
+
 ```
+## Word Frequency
+
+
+To see the most frequent words, I generated a wordcloud with them.
+
+```{r wordcloud, warning=FALSE}
+library(wordcloud)
+wordcloud(all_data, max.words=100, min.freq=40, colors=brewer.pal(6, 'Dark2'), rot.per=.2)
+```
+
+Besides the wordcloud, I also generated the bigrams of all the data collected. To generate the bigrams I used the function ngrams of the NLP package.
+
+```{r bigram,warning=FALSE}
+#Further processing on the corpus before tokenization
+all_data <- paste0(unlist(all_data), collapse=" ")
+all_data <- strsplit(all_data, " ", fixed=TRUE)[[1L]]
+all_data <- all_data[all_data != ""]
+
+bigrams <- vapply(ngrams(all_data, 2L), paste, "", collapse=" ")
+
+top5 <- sort(table(bigrams), decreasing=T)[1:5]
+
+barplot(top5)
+
+```
+
+## Analysis
+
