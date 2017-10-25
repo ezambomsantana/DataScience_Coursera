@@ -1,6 +1,8 @@
 ---
-title: "week2-milestone"
+title: "Exploratory Analysis"
 output: html_document
+author: Eduardo Santana
+date: "25 October 2017"
 ---
 
 ```{r setup, include=FALSE}
@@ -100,3 +102,4 @@ barplot(top5)
 
 ## Analysis
 
+I intend to analyse the trigram or fourgram to predict the next word that the user will write. I will start to study the models that I can use to make these analysis and the computational requirements of them.
