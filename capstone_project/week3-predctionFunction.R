@@ -1,6 +1,4 @@
-library(magrittr)
-
-library(dplyr)
+df_trigrams = read.csv("/home/eduardo/df_trigrams.csv", header = TRUE)
 
 predict_word('Besides the wordcloud, tell also')
 
