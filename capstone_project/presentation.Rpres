@@ -1,0 +1,43 @@
+Capstone Project
+========================================================
+author: Eduardo Santana
+date: 29/10/2017
+autosize: true
+
+Data Science Capstone Project
+
+Introduction
+========================================================
+
+The aim of the capstone project of the Data Science Specialization was to develop
+a word prediction application using Shiny. The following developments were necessary to the implementation of the app:
+
+- Read the data from different sources: Twitter, Blogs, and News.
+- Create the 3-gram, 2-gram, and 1-gram dataframes
+- Implement a predict alogorithm using the n-grams dataframes
+- Implement the word prediction app
+
+Libraries
+========================================================
+
+To the development of this project the following libraries were used:
+
+- tm: to use some text manipulation functions.
+- dplyr: to manipulate the dataframes
+- NLP: to create the n-grams.
+
+Word Prediction Application 
+========================================================
+
+The application is very simples. The application works with the following flow:
+
+- The user put a phrase with the minimum two words
+- The user click in the "Submit" button
+- The word prediction algorithm is called with the phrase
+- The 5 most probable next word predicted by the algorithm is showed to the used
+
+Links
+========================================================
+The code of the application is avaiable on the GitHub: http://goo.gl/oZyFSp
+
+The application is avaialble on the following link:
