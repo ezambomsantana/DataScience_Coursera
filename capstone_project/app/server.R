@@ -1,9 +1,8 @@
 library(shiny)
 library(magrittr)
 library(dplyr)
-library(tm)
 
-df_trigram <- read.csv("/home/eduardo/df_trigrams.csv", stringsAsFactors = FALSE)
+df_trigram <- read.csv("df_trigrams.csv", stringsAsFactors = FALSE)
 
 names(df_trigram) <- c("x", "word1", "word2", "word3","count")
 head(df_trigram)
@@ -14,9 +13,6 @@ df_trigram$word3 <- as.character(df_trigram$word3)
 
 predict_word <- function(x) {
   
-  x <- removeWords(x, words=c('the', stopwords("english")))
-  x <- removePunctuation(x)
-  x <- stemDocument(x)
   x <- tolower(x)
   x <- gsub("[^[:alnum:][:space:]]", " ", x)
   
@@ -44,7 +40,7 @@ predict_word <- function(x) {
     predicted <- na.omit(predicted)
     
     if(length(predicted) >= 3)
-      predicted[1:100]
+      predicted[1:10]
     else
       predicted[1:length(predicted)]
   }
