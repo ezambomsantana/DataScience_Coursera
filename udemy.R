@@ -1,3 +1,5 @@
+#https://www.analyticsvidhya.com/blog/2017/09/common-machine-learning-algorithms/
+
 #carrega o arquivo com os dados sobre os créditos
 data <- read.csv("/home/eduardo/Credito.csv", header = TRUE, sep =";")
 
