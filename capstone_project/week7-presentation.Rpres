@@ -29,7 +29,7 @@ To the development of this project the following libraries were used:
 Word Prediction Application 
 ========================================================
 
-The application is very simples. The application works with the following flow:
+The application is very simple. The application works with the following flow:
 
 - The user put a phrase with the minimum two words
 - The user click in the "Submit" button
@@ -38,6 +38,9 @@ The application is very simples. The application works with the following flow:
 
 Links
 ========================================================
+
+* I used just 5% of the corpus in the final version of the app because of the size of the file.
+
 The code of the application is avaiable on the GitHub: http://goo.gl/oZyFSp
 
-The application is avaialble on the following link:
+The application is avaialble on the following link: http://goo.gl/QhKT9F
