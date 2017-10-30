@@ -1,5 +1,3 @@
-#https://www.analyticsvidhya.com/blog/2017/09/common-machine-learning-algorithms/
-
 #carrega o arquivo com os dados sobre os créditos
 data <- read.csv("/home/eduardo/Credito.csv", header = TRUE, sep =";")
 
@@ -20,7 +18,7 @@ floresta$confusion
 #calcula a taxa de erro
 (floresta$confusion[2] + floresta$confusion[3]) / sum(floresta$confusion)
 
-previsao
+# Erro de 23%
 
 library(rpart)
 # grow tree 
@@ -28,27 +26,23 @@ arvore <- rpart(CLASSE ~ .,data=creditotreino,method="class")
 #Predict Output 
 previsao = predict(arvore,creditoteste)
 
+previsao2 <- unlist(lapply(previsao, function(x) if (x[1] >= 0.5) "bom" else "ruim" ))
+as.factor(previsao2)
 
-previsao <- unlist(lapply(previsao, function(x) print(x[1])  ))
-word1 <- unlist(lapply(trigrams, function(x) unlist(strsplit(x , " "))[1] ))
+confMat <- table(creditoteste$CLASSE,previsao2[1:length(creditoteste$CLASSE)])
 
-confMat <- table(creditoteste$CLASSE,previsao)
+1 - sum(diag(confMat))/sum(confMat)
 
-accuracy <- sum(diag(confMat))/sum(confMat)
-
+# Erro de 25%
 
 library(e1071)
 # Fitting model
-fit <-naiveBayes(CLASSE ~ .,data=creditotreino,)
-summary(fit)
+naive <-naiveBayes(CLASSE ~ .,data=creditotreino,)
 #Predict Output 
-predicted= predict(fit,creditoteste)
+previsao= predict(naive,creditoteste)
 
-fit$
+confMat <- table(creditoteste$CLASSE,previsao)
 
-  
-library(caret)
-# Fitting model
-fitControl <- trainControl( method = "repeatedcv", number = 4, repeats = 4)
-fit <- train(CLASSE ~ .,data=creditotreino, method = "gbm", trControl = fitControl,verbose = FALSE)
-predicted= predict(fit,creditoteste,type= "prob")[,2] 
+1 - sum(diag(confMat))/sum(confMat)
+
+#erro de 26%
